@@ -135,6 +135,7 @@ class BaseInventory(InventoryManager):
         group_all = self.get_or_create_group('all')
         ungrouped = self.get_or_create_group('ungrouped')
         for host_data in self.host_list:
+            host_data.pop("become", None)
             host = self.host_manager_class(host_data=host_data)
             self.hosts[host_data['hostname']] = host
             groups_data = host_data.get('groups')

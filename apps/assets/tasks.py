@@ -166,7 +166,8 @@ def test_asset_connectivity_util(assets, task_name=None):
     hosts = clean_hosts(assets)
     if not hosts:
         return {}
-    tasks = const.TEST_ADMIN_USER_CONN_TASKS
+    # tasks = const.TEST_ADMIN_USER_CONN_TASKS
+    tasks = const.TEST_ADMIN_USER_CONN_TASKS_WINDOWS
     created_by = assets[0].org_id
     task, created = update_or_create_ansible_task(
         task_name=task_name, hosts=hosts, tasks=tasks, pattern='all',

@@ -18,7 +18,15 @@ TEST_ADMIN_USER_CONN_TASKS = [
     {
         "name": "ping",
         "action": {
-            "module": "ping",
+            "module": "win_ping",
+        }
+    }
+]
+TEST_ADMIN_USER_CONN_TASKS_WINDOWS = [
+    {
+        'name': 'win_ping',
+        'action': {
+            'module': 'win_ping'
         }
     }
 ]

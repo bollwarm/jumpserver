@@ -21,7 +21,7 @@ class JMSBaseInventory(BaseInventory):
             'id': asset.id,
             'hostname': asset.hostname,
             'ip': asset.ip,
-            'port': asset.protocol_ssh.port,
+            'port': asset.ssh_port,
             'vars': dict(),
             'groups': [],
         }
@@ -34,6 +34,11 @@ class JMSBaseInventory(BaseInventory):
         for label in asset.labels.all():
             info["vars"].update({
                 label.name: label.value
+            })
+        if asset.is_windows():
+            info["vars"].update({
+                "ansible_connection": "ssh",
+                "ansible_shell_type": "cmd"
             })
         if asset.domain:
             info["vars"].update({

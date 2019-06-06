@@ -171,6 +171,11 @@ class Asset(OrgModelMixin):
         return None
 
     @property
+    def ssh_port(self):
+        protocol = self.protocol_ssh
+        return protocol.port
+
+    @property
     def protocol_ssh(self):
         return self.get_protocol_by_name("ssh")
 
@@ -183,6 +188,11 @@ class Asset(OrgModelMixin):
             return True
         else:
             return False
+
+    def is_windows(self):
+        if self.platform in ("Windows", "Windows2016"):
+            return True
+        return False
 
     def is_support_ansible(self):
         return self.has_protocol('ssh') and self.platform not in ("Other",)
